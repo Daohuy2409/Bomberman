@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.Bomber;
@@ -14,6 +15,7 @@ import uet.oop.bomberman.entities.Grass;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +71,7 @@ public class BombermanGame extends Application {
             if (true) {
                 Move move = new Move();
                 switch (event.getCode()) {
+
                     case UP:
                         move.up(bomberman);
                         break;

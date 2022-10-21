@@ -39,6 +39,10 @@ public abstract class Entity {
         return y;
     }
 
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }

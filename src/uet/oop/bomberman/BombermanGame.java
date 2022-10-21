@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Grass;
@@ -66,18 +67,19 @@ public class BombermanGame extends Application {
 
         scene.setOnKeyPressed(event -> {
             if (true) {
+                Move move = new Move();
                 switch (event.getCode()) {
                     case UP:
-                        bomberman.setY(bomberman.getY() - 4);
+                        move.up(bomberman);
                         break;
                     case DOWN:
-                        bomberman.setY(bomberman.getY() + 4);
+                        move.down(bomberman);
                         break;
                     case LEFT:
-                        bomberman.setX(bomberman.getX() - 4);
+                        move.left(bomberman);
                         break;
                     case RIGHT:
-                        bomberman.setX(bomberman.getX() + 4);
+                        move.right(bomberman);
                         break;
                     case SPACE:
                         System.out.println("space");

@@ -107,13 +107,8 @@ public class BombermanGame extends Application {
                         object = new Wall(i, j, Sprite.wall.getFxImage());
                     } else if(mapArr[j][i] == '*') {
                         object = new Brick(i, j, Sprite.brick.getFxImage());
-                    } else if(mapArr[j][i] == 'x') {
-                        object = new Portal(i, j, Sprite.brick.getFxImage());
-                        object = new Brick(i, j, Sprite.brick.getFxImage());
-                    //} else if(mapArr[j][i] == 'f') {
-                        //object = new FlameItem(i, j, Sprite.powerup_flames.getFxImage());
-                        //object = new Brick(i, j, Sprite.brick.getFxImage());
-                    }else {
+
+                    } else {
                         object = new Grass(i, j, Sprite.grass.getFxImage());
                     }
                     stillObjects.add(object);

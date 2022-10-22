@@ -1,6 +1,6 @@
 package uet.oop.bomberman.control;
 
-import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 

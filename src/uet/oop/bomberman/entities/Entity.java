@@ -16,6 +16,8 @@ public abstract class Entity {
 
     protected Image img;
 
+    protected boolean life = true;
+
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( int xUnit, int yUnit, Image img) {
         this.x = xUnit * Sprite.SCALED_SIZE;
@@ -41,6 +43,14 @@ public abstract class Entity {
 
     public void setImg(Image img) {
         this.img = img;
+    }
+
+    public boolean isLife() {
+        return life;
+    }
+
+    public void setLife(boolean life) {
+        this.life = life;
     }
 
     public void render(GraphicsContext gc) {

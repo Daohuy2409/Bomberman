@@ -11,7 +11,7 @@ public class MapLevel {
     public static char[][] mapArr;
     public static void setMapArr() {
         try{
-            File file = new File("C:/Users/hp/Desktop/Bomberman/res/levels/Level1.txt");
+            File file = new File("res/levels/Level1.txt");
             Scanner scanner = new Scanner(file);
             if (scanner.hasNextInt()) {
                 level = scanner.nextInt();

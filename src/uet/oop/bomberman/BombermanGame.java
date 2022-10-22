@@ -12,7 +12,9 @@ import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.Brick;
 import uet.oop.bomberman.entities.blocks.Grass;
+import uet.oop.bomberman.entities.blocks.Portal;
 import uet.oop.bomberman.entities.blocks.Wall;
+import uet.oop.bomberman.entities.item.FlameItem;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
@@ -106,7 +108,13 @@ public class BombermanGame extends Application {
                         object = new Wall(i, j, Sprite.wall.getFxImage());
                     } else if(mapArr[j][i] == '*') {
                         object = new Brick(i, j, Sprite.brick.getFxImage());
-                    } else{
+                    } else if(mapArr[j][i] == 'x') {
+                        object = new Portal(i, j, Sprite.brick.getFxImage());
+                        object = new Brick(i, j, Sprite.brick.getFxImage());
+                    //} else if(mapArr[j][i] == 'f') {
+                        //object = new FlameItem(i, j, Sprite.powerup_flames.getFxImage());
+                        //object = new Brick(i, j, Sprite.brick.getFxImage());
+                    }else {
                         object = new Grass(i, j, Sprite.grass.getFxImage());
                     }
                     stillObjects.add(object);

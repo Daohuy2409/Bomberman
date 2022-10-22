@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+
 import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
@@ -21,8 +22,6 @@ import java.util.List;
 import static uet.oop.bomberman.control.SoundManager.updateSound;
 import static uet.oop.bomberman.graphics.MapLevel.setMapArr;
 import static uet.oop.bomberman.graphics.MapLevel.mapArr;
-import static uet.oop.bomberman.graphics.MapLevel.rows;
-import static uet.oop.bomberman.graphics.MapLevel.cols;
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;

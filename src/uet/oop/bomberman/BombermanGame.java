@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.control.SoundManager.updateSound;
-import static uet.oop.bomberman.graphics.MapLevel.setMapArr;
 import static uet.oop.bomberman.graphics.MapLevel.mapArr;
+import static uet.oop.bomberman.graphics.MapLevel.setMapArr;
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;

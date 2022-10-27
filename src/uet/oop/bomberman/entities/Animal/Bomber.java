@@ -9,7 +9,7 @@ import uet.oop.bomberman.entities.Entity;
 
 import java.awt.event.KeyEvent;
 
-public class Bomber extends Entity {
+public class Bomber extends Animal {
 
     public Bomber(int x, int y, Image img) {
         super( x, y, img);

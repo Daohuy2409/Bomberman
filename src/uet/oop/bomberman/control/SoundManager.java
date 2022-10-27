@@ -1,17 +1,12 @@
 package uet.oop.bomberman.control;
 
-import javafx.application.Application;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 import javax.sound.sampled.*;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 import static uet.oop.bomberman.BombermanGame.bomberman;
+import static uet.oop.bomberman.levels.NextLevel.wait;
 
 public class SoundManager extends JFrame {
     public static Clip title_screen;
@@ -40,6 +35,7 @@ public class SoundManager extends JFrame {
                 bomb_explosion.open(audioIn);
                 bomb_explosion.start();
             }
+
             if (sound.equals("just_died")) {
                 just_died = AudioSystem.getClip();
                 just_died.open(audioIn);
@@ -66,6 +62,14 @@ public class SoundManager extends JFrame {
             if (!isSoundDied) {
                 new SoundManager("sound/just_died.wav", "just_died");
                 isSoundDied = true;
+            }
+        }
+        if (!wait) {
+            title_screen.close();
+            bomb_explosion.close();
+            if (!isSoundComplete) {
+                new SoundManager("sound/level_complete.wav", "default");
+                isSoundComplete = true;
             }
         }
     }

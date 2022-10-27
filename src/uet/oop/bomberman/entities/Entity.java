@@ -45,6 +45,10 @@ public abstract class Entity {
         this.img = img;
     }
 
+    public Image getImg() {
+        return img;
+    }
+
     public boolean isLife() {
         return life;
     }

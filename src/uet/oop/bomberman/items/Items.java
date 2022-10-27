@@ -12,9 +12,11 @@ public abstract class Items extends Entity {
     }
 
     public Items() {
+
     }
 
     public Items(boolean received) {
+        this.received = received;
     }
 
     public boolean isReceived() {

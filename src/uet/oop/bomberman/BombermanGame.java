@@ -14,6 +14,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.Brick;
 import uet.oop.bomberman.entities.blocks.Grass;
 import uet.oop.bomberman.entities.blocks.Wall;
+import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.levels.Level1;
 
@@ -21,13 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.control.SoundManager.updateSound;
-<<<<<<< Updated upstream
-import static uet.oop.bomberman.graphics.MapLevel.setMapArr;
-import static uet.oop.bomberman.graphics.MapLevel.mapArr;
-import static uet.oop.bomberman.graphics.MapLevel.rows;
-import static uet.oop.bomberman.graphics.MapLevel.cols;
-=======
->>>>>>> Stashed changes
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;
@@ -78,8 +72,7 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        new Level1();
         enemy.add(bomberman);
         scene.setOnKeyPressed(event -> {
             if (bomberman.isLife()) {
@@ -104,28 +97,6 @@ public class BombermanGame extends Application {
                 }
             }
         });
-    }
-
-    public void createMap() {
-<<<<<<< Updated upstream
-        setMapArr();
-        for (int i = 0; i < WIDTH; i++) {
-                for (int j = 0; j < HEIGHT; j++) {
-                    Entity object;
-                    if (mapArr[j][i] == '#') {
-                        object = new Wall(i, j, Sprite.wall.getFxImage());
-                    } else if(mapArr[j][i] == '*') {
-                        object = new Brick(i, j, Sprite.brick.getFxImage());
-                    } else{
-                        object = new Grass(i, j, Sprite.grass.getFxImage());
-                    }
-                    stillObjects.add(object);
-                }
-            }
-
-=======
-        new Level1();
->>>>>>> Stashed changes
     }
 
     public void update() {

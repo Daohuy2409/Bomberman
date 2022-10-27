@@ -25,6 +25,10 @@ public abstract class Entity {
         this.img = img;
     }
 
+    public Entity() {
+
+    }
+
     public void setX(int x) {
         this.x = x;
     }

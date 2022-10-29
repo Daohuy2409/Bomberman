@@ -72,6 +72,7 @@ public class BombermanGame extends Application {
 
 
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        bomberman.setDirection("right");
         new Level1();
         scene.setOnKeyPressed(event -> {
             if (bomberman.isLife()) {

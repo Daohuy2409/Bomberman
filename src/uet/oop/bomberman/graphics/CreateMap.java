@@ -1,6 +1,7 @@
 package uet.oop.bomberman.graphics;
 
 
+import org.omg.CORBA.CTX_RESTRICT_SCOPE;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.*;
 import uet.oop.bomberman.entities.item.*;
@@ -38,7 +39,6 @@ public class CreateMap {
                     switch (s) {
                         case 'x':
                             entity = new Portal(j, i, Sprite.brick.getFxImage());
-                            s = ' ';
                             break;
                         case '#':
                             entity = new Wall(j, i, Sprite.wall.getFxImage());

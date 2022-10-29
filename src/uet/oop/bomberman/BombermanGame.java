@@ -9,32 +9,34 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 import uet.oop.bomberman.control.Move;
+import uet.oop.bomberman.entities.Animal.Animal;
 import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.blocks.Brick;
-import uet.oop.bomberman.entities.blocks.Grass;
-import uet.oop.bomberman.entities.blocks.Portal;
-import uet.oop.bomberman.entities.blocks.Wall;
-import uet.oop.bomberman.entities.item.FlameItem;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.levels.Level1;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.control.SoundManager.updateSound;
-import static uet.oop.bomberman.graphics.MapLevel.mapArr;
-import static uet.oop.bomberman.graphics.MapLevel.setMapArr;
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
+
+    public static int _width = 0;
+    public static int _height = 0;
+    public static int _level = 1;
     
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+    public static final List<Entity> block = new ArrayList<>(); //Contains fixed entities
+    public static List<Animal> enemy = new ArrayList<>();       //Contains enemy entities
 
-    public static Entity bomberman;
+    public static char[][] idObjects;    //Two-dimensional array is used to test paths
+    public static int[][] listKill;     //Array containing dead positions
+
+    public static Animal bomberman;
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -68,27 +70,24 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
 
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
-
+        new Level1();
         scene.setOnKeyPressed(event -> {
             if (bomberman.isLife()) {
-                Move move = new Move();
                 switch (event.getCode()) {
 
                     case UP:
-                        move.up(bomberman);
+                        Move.up(bomberman);
                         break;
                     case DOWN:
-                        move.down(bomberman);
+                        Move.down(bomberman);
                         break;
                     case LEFT:
-                        move.left(bomberman);
+                        Move.left(bomberman);
                         break;
                     case RIGHT:
-                        move.right(bomberman);
+                        Move.right(bomberman);
                         break;
                     case SPACE:
                         System.out.println("space");
@@ -98,34 +97,23 @@ public class BombermanGame extends Application {
         });
     }
 
-    public void createMap() {
-        setMapArr();
-        for (int i = 0; i < WIDTH; i++) {
-                for (int j = 0; j < HEIGHT; j++) {
-                    Entity object;
-                    if (mapArr[j][i] == '#') {
-                        object = new Wall(i, j, Sprite.wall.getFxImage());
-                    } else if(mapArr[j][i] == '*') {
-                        object = new Brick(i, j, Sprite.brick.getFxImage());
-
-                    } else {
-                        object = new Grass(i, j, Sprite.grass.getFxImage());
-                    }
-                    stillObjects.add(object);
-                }
-            }
-
-    }
-
     public void update() {
 
-        entities.forEach(Entity::update);
-        updateSound();
+        enemy.forEach(Entity::update);
+        enemy.forEach(Entity::update);
+        bomberman.update();
+        bomberman.setCountToRun(bomberman.getCountToRun() + 1);
+        if (bomberman.getCountToRun() == 4) {
+            Move.checkRun(bomberman);
+            bomberman.setCountToRun(0);
+        }
+        //updateSound();
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        block.forEach(g -> g.render(gc));
+        enemy.forEach(g -> g.render(gc));
+        bomberman.render(gc);
     }
 }

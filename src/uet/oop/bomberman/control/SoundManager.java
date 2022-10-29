@@ -1,14 +1,8 @@
 package uet.oop.bomberman.control;
 
-import javafx.application.Application;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 import javax.sound.sampled.*;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 import static uet.oop.bomberman.BombermanGame.bomberman;

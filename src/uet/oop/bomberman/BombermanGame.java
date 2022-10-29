@@ -30,8 +30,8 @@ public class BombermanGame extends Application {
     
     private GraphicsContext gc;
     private Canvas canvas;
-    public static final List<Entity> block = new ArrayList<>(); //Contains fixed entities
-    public static List<Animal> enemy = new ArrayList<>();       //Contains enemy entities
+    public static final List<Entity> blockList = new ArrayList<>(); //Contains fixed entities
+    public static List<Animal> enemyList = new ArrayList<>();       //Contains enemy entities
 
     public static char[][] idObjects;    //Two-dimensional array is used to test paths
     public static int[][] listKill;     //Array containing dead positions
@@ -100,21 +100,29 @@ public class BombermanGame extends Application {
 
     public void update() {
 
-        enemy.forEach(Entity::update);
-        enemy.forEach(Entity::update);
+        blockList.forEach(Entity::update);
+        enemyList.forEach(Entity::update);
         bomberman.update();
         bomberman.setCountToRun(bomberman.getCountToRun() + 1);
         if (bomberman.getCountToRun() == 4) {
             Move.checkRun(bomberman);
             bomberman.setCountToRun(0);
         }
+
+        for (Animal e : enemyList) {
+            e.setCountToRun(e.getCountToRun() + 1);
+            if (e.getCountToRun() == 8) {
+                Move.checkRun(e);
+                e.setCountToRun(0);
+            }
+        }
         //updateSound();
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        block.forEach(g -> g.render(gc));
-        enemy.forEach(g -> g.render(gc));
+        blockList.forEach(g -> g.render(gc));
+        enemyList.forEach(g -> g.render(gc));
         bomberman.render(gc);
     }
 }

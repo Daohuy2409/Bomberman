@@ -23,7 +23,7 @@ public class SpeedItem extends Item {
 
     @Override
     public void update() {
-        for (Entity entity : block)
+        for (Entity entity : blockList)
             if (entity instanceof SpeedItem && !this.received)
                 if (listKill[entity.getX() / 32][entity.getY() / 32] == 4)
                     entity.setImg(Sprite.powerup_speed.getFxImage());

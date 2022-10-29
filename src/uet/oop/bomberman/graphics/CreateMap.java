@@ -55,7 +55,7 @@ public class CreateMap {
                         default:
                             entity = new Grass(j, i, Sprite.grass.getFxImage());
                     }
-                    block.add(entity);
+                    blockList.add(entity);
                 }
             }
         } catch (IOException e) {

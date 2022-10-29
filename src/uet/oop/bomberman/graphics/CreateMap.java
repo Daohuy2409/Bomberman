@@ -1,7 +1,5 @@
 package uet.oop.bomberman.graphics;
 
-
-import org.omg.CORBA.CTX_RESTRICT_SCOPE;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.*;
 import uet.oop.bomberman.entities.item.*;

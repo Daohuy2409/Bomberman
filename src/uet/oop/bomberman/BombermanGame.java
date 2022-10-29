@@ -12,6 +12,7 @@ import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.Animal.Animal;
 import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.blocks.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.levels.Level1;
 
@@ -91,7 +92,7 @@ public class BombermanGame extends Application {
                         Move.right(bomberman);
                         break;
                     case SPACE:
-                        System.out.println("space");
+                        Bomb.putBomb();
                         break;
                 }
             }
@@ -100,8 +101,10 @@ public class BombermanGame extends Application {
 
     public void update() {
 
+
         blockList.forEach(Entity::update);
         enemyList.forEach(Entity::update);
+
         bomberman.update();
         bomberman.setCountToRun(bomberman.getCountToRun() + 1);
         if (bomberman.getCountToRun() == 4) {

@@ -32,7 +32,7 @@ public class Bomb extends Entity {
             x = Math.round(x);
             y = Math.round(y);
             bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
-            block.add(bomb);
+            blockList.add(bomb);
             isBomb = 1;
         }
     }
@@ -69,7 +69,7 @@ public class Bomb extends Entity {
 
     private static void checkExplosion() {
         if (isBomb == 2) {
-            block.remove(bomb);
+            blockList.remove(bomb);
             isBomb = 0;
         }
     }

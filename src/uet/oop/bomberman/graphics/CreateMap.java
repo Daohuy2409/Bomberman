@@ -23,7 +23,7 @@ public class CreateMap {
             }
             int line = 0;
             idObjects = new char[_height][_width];
-            listKill = new int[_height][_width];
+            listKill = new char[_height][_width];
             while (scanner.hasNextLine() && line < _height) {
                 char[] text = scanner.nextLine().toCharArray();
                 if (_width >= 0) System.arraycopy(text, 0, idObjects[line], 0, _width);

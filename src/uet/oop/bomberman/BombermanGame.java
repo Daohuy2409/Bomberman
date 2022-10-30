@@ -13,6 +13,7 @@ import uet.oop.bomberman.entities.Animal.Animal;
 import uet.oop.bomberman.entities.Animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.blocks.Bomb;
+import uet.oop.bomberman.entities.blocks.Portal;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.levels.Level1;
 
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.control.SoundManager.updateSound;
+import static uet.oop.bomberman.entities.blocks.Portal.isPortal;
+import static uet.oop.bomberman.levels.UpLevel.*;
+
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;
@@ -35,7 +39,7 @@ public class BombermanGame extends Application {
     public static List<Animal> enemyList = new ArrayList<>();       //Contains enemy entities
 
     public static char[][] idObjects;    //Two-dimensional array is used to test paths
-    public static int[][] listKill;     //Array containing dead positions
+    public static char[][] listKill;     //Array containing dead positions
 
     public static Animal bomberman;
 
@@ -120,6 +124,15 @@ public class BombermanGame extends Application {
             }
         }
         //updateSound();
+        if (!isPortal && !isWait) {
+            Entity portal = new Portal(2, 2, Sprite.portal.getFxImage());
+            blockList.add(portal);
+            if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 == portal.getY() / 32) {
+                isWait = true;
+                waitingTime = System.currentTimeMillis();
+            }
+        }
+        waitToLevelUp();
     }
 
     public void render() {

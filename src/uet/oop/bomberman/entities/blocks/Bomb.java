@@ -207,43 +207,59 @@ public class Bomb extends Entity {
         if (topExplosion != null) {
             createTop();
             blockedBrick(bomb.getX() / 32, bomb.getY() / 32 + 1);
-            idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] = 'b';
+
+            if (idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] != '#')
+                idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] = 'b';
         }
 
         if (downExplosion != null) {
             createDown();
             blockedBrick(bomb.getX() / 32, bomb.getY() / 32 - 1);
-            idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] = 'b';
+
+            if (idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] != '#')
+                idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] = 'b';
 
         }
         if (leftExplosion != null) {
             createLeft();
             blockedBrick(bomb.getX() / 32 - 1, bomb.getY() / 32);
-            idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] = 'b';
+
+            if (idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] != '#')
+                idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] = 'b';
         }
         if (rightExplosion != null) {
             createRight();
             blockedBrick(bomb.getX() / 32 + 1, bomb.getY() / 32);
-            idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] = 'b';
+
+            if (idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] != '#')
+                idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] = 'b';
         }
     }
     private static void removeExplosion() {
         idObjects[bomb.getY() / 32][bomb.getX() / 32] = ' ';
         if (topExplosion != null) {
             blockList.remove(topExplosion);
-            idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] = ' ';
+
+            if (idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] != '#')
+                idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] = ' ';
         }
         if (downExplosion != null) {
             blockList.remove(downExplosion);
-            idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] = ' ';
+
+            if (idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] != '#')
+                idObjects[bomb.getY() / 32 - 1][bomb.getX() / 32] = ' ';
         }
         if (leftExplosion != null) {
             blockList.remove(leftExplosion);
-            idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] = ' ';
+
+            if (idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] != '#')
+                idObjects[bomb.getY() / 32][bomb.getX() / 32 - 1] = ' ';
         }
         if (rightExplosion != null) {
             blockList.remove(rightExplosion);
-            idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] = ' ';
+
+            if (idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] != '#')
+                idObjects[bomb.getY() / 32][bomb.getX() / 32 + 1] = ' ';
         }
     }
     private static void checkExplosion() {

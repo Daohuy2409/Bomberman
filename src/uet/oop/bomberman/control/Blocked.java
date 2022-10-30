@@ -8,19 +8,23 @@ import static uet.oop.bomberman.BombermanGame.idObjects;
 public class Blocked {
 
     public static boolean block_down(Entity entity) {
-        return idObjects[entity.getY() / 32 + 1][entity.getX() / 32] == ' ';
+        return idObjects[entity.getY() / 32 + 1][entity.getX() / 32] == ' '
+                || idObjects[entity.getY() / 32 + 1][entity.getX() / 32] == 'x';
     }
 
     public static boolean block_up(Entity entity) {
-        return idObjects[entity.getY() / 32 - 1][entity.getX() / 32] == ' ';
+        return idObjects[entity.getY() / 32 - 1][entity.getX() / 32] == ' '
+                || idObjects[entity.getY() / 32 - 1][entity.getX() / 32] == 'x';
     }
 
     public static boolean block_left(Entity entity) {
-        return idObjects[entity.getY() / 32][entity.getX() / 32 - 1] == ' ';
+        return idObjects[entity.getY() / 32][entity.getX() / 32 - 1] == ' '
+                ||idObjects[entity.getY() / 32][entity.getX() / 32 - 1] == 'x';
     }
 
     public static boolean block_right(Entity entity) {
-        return idObjects[entity.getY() / 32][entity.getX() / 32 + 1] == ' ';
+        return idObjects[entity.getY() / 32][entity.getX() / 32 + 1] == ' '
+                || idObjects[entity.getY() / 32][entity.getX() / 32 + 1] == 'x';
     }
 
     public static boolean block_down_bomb(Entity entity, int power) {

@@ -1,11 +1,8 @@
 package uet.oop.bomberman.levels;
 
-import uet.oop.bomberman.entities.Animal.Bomber;
+import uet.oop.bomberman.entities.Animal.*;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.entities.Animal.Balloom;
-import uet.oop.bomberman.entities.Animal.Oneal;
-import uet.oop.bomberman.entities.Animal.Animal;
 import javafx.scene.image.Image;
 
 import static uet.oop.bomberman.BombermanGame.*;
@@ -20,10 +17,11 @@ public class Level2 {
         new CreateMap("res/levels/Level2.txt");
         speed = 1;
 
-        Animal balloom1 = new Balloom(4, 9, Sprite.balloom_left1.getFxImage());
-        Animal balloom2 = new Balloom(23, 7, Sprite.balloom_left1.getFxImage());
-        enemyList.add(balloom1);
-        enemyList.add(balloom2);
+
+        Animal stupid1 = new Stupid(3, 9, Sprite.kondoria_left1.getFxImage());
+        Animal ovape1 = new Ovape(23, 7, Sprite.doll_left1.getFxImage());
+        enemyList.add(stupid1);
+        enemyList.add(ovape1);
 
         Animal oneal1 = new Oneal(26, 6, Sprite.oneal_left1.getFxImage());
         Animal oneal2 = new Oneal(20, 3, Sprite.oneal_left1.getFxImage());

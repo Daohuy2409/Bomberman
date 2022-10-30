@@ -138,7 +138,7 @@ public class BombermanGame extends Application {
             }
         }
         //updateSound();
-        if (!isPortal && !isWait) {
+        if (enemyList.size() == 0 &&!isPortal && !isWait) {
             Entity portal = new Portal(2, 3, Sprite.portal.getFxImage());
             blockList.add(portal);
             if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 == portal.getY() / 32) {

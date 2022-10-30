@@ -37,6 +37,7 @@ public class Bomb extends Entity {
             isBomb = 1;
         }
     }
+
     public static void activeBomb() {
         if (swapActive == 1) {
             bomb.setImg(Sprite.bomb.getFxImage());
@@ -70,7 +71,6 @@ public class Bomb extends Entity {
 
     private static void checkExplosion() {
         if (isBomb == 2) {
-
             blockList.remove(bomb);
             isBomb = 0;
         }

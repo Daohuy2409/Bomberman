@@ -60,6 +60,7 @@ public class BombermanGame extends Application {
 
         // Them scene vao stage
         stage.setScene(scene);
+        stage.setTitle("DoubleH Bomberman");
         stage.show();
 
         AnimationTimer timer = new AnimationTimer() {
@@ -100,7 +101,6 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
-
 
         blockList.forEach(Entity::update);
         enemyList.forEach(Entity::update);

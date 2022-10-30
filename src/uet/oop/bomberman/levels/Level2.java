@@ -3,7 +3,6 @@ package uet.oop.bomberman.levels;
 import uet.oop.bomberman.entities.Animal.*;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
-import javafx.scene.image.Image;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.blocks.Bomb.powerBomb;

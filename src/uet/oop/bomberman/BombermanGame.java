@@ -6,7 +6,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import uet.oop.bomberman.control.Move;
@@ -18,14 +17,10 @@ import uet.oop.bomberman.entities.blocks.Portal;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.levels.Level1;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.sql.Time;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import static uet.oop.bomberman.control.SoundManager.updateSound;
 import static uet.oop.bomberman.entities.blocks.Portal.isPortal;
 import static uet.oop.bomberman.levels.UpLevel.*;
 
@@ -137,7 +132,6 @@ public class BombermanGame extends Application {
                 e.setCountToRun(0);
             }
         }
-        //updateSound();
         if (enemyList.size() == 0 &&!isPortal && !isWait) {
             Entity portal = new Portal(2, 3, Sprite.portal.getFxImage());
             blockList.add(portal);

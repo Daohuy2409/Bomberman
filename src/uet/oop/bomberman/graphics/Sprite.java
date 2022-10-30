@@ -2,8 +2,6 @@ package uet.oop.bomberman.graphics;
 
 import javafx.scene.image.*;
 
-import java.awt.image.BufferedImage;
-import java.nio.IntBuffer;
 
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
@@ -20,7 +18,6 @@ public class Sprite {
 	protected int _realHeight;
 	private SpriteSheet _sheet;
 
-	public static Sprite transparent = new Sprite(DEFAULT_SIZE, 15, 15, SpriteSheet.tiles, 16, 16);
 
 	/*
 	|--------------------------------------------------------------------------

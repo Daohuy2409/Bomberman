@@ -1,6 +1,5 @@
 package uet.oop.bomberman.control;
 
-import com.sun.corba.se.spi.oa.OADestroyed;
 import uet.oop.bomberman.entities.Animal.*;
 import uet.oop.bomberman.graphics.Sprite;
 

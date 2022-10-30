@@ -99,8 +99,6 @@ public class BombermanGame extends Application {
                         Bomb.putBomb();
                         break;
                 }
-            } else {
-                System.out.println(bomberman.isLife());
             }
         });
     }

@@ -9,9 +9,9 @@
 Project này là bài tập lớn số 2 môn Lập trình hướng đối tượng. Nhiệm vụ của bọn mình là mô phỏng lại trò chơi Bomberman kinh điển của NES.
 
 Nhóm gồm các sinh viên:
-- [Nguyễn Việt Hưng](https://www.facebook.com/profile.php?id=100018016965114) - 20020044
+- [Nguyễn Việt Hưng](https://www.facebook.com/profile.php?id=100018016965114) - 21020335
 
-- [Đào Quang Huy](https://www.facebook.com/quanghuyls123) - 20020034
+- [Đào Quang Huy](https://www.facebook.com/quanghuyls123) - 21020329
 ## Cài đặt
 Để khởi chạy được game cần cài đặt [Java SE Development Kit 8](https://www.oracle.com/java/technologies/downloads/#java8), sau đó:
 - Clone project. Tạo project mới bằng IntelIJ bằng cách trỏ tới thư mục chứa project đã clone.

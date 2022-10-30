@@ -56,14 +56,12 @@ public class BombermanGame extends Application {
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
-        // Tao root container
+        // Tao root container+
         Group root = new Group();
         root.getChildren().add(canvas);
 
         // Tao scene
         Scene scene = new Scene(root);
-
-
 
         // Them scene vao stage
         stage.setScene(scene);
@@ -130,7 +128,7 @@ public class BombermanGame extends Application {
         }
         //updateSound();
         if (!isPortal && !isWait) {
-            Entity portal = new Portal(2, 2, Sprite.portal.getFxImage());
+            Entity portal = new Portal(2, 3, Sprite.portal.getFxImage());
             blockList.add(portal);
             if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 == portal.getY() / 32) {
                 isWait = true;

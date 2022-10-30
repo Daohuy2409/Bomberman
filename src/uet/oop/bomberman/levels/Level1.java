@@ -17,8 +17,8 @@ public class Level1 {
         new CreateMap("res/levels/Level1.txt");
         speed = 1;
 
-        Animal balloom1 = new Stupid(3, 9, Sprite.kondoria_left1.getFxImage());
-        Animal balloom2 = new Ovape(23, 7, Sprite.doll_left1.getFxImage());
+        Animal balloom1 = new Balloom(4, 9, Sprite.balloom_left1.getFxImage());
+        Animal balloom2 = new Balloom(23, 7, Sprite.balloom_left1.getFxImage());
         enemyList.add(balloom1);
         enemyList.add(balloom2);
 

@@ -21,16 +21,11 @@ public class FlameItem extends Item {
 
     @Override
     public void update() {
-        for (Entity entity : blockList)
-            if (entity instanceof FlameItem && !this.received)
-                if (listKill[entity.getX() / 32][entity.getY() / 32] == 4)
-                    entity.setImg(Sprite.powerup_flames.getFxImage());
-
         if (!this.received)
             if (bomberman.getX() == this.x && bomberman.getY() == this.y) {
                 this.setImg(Sprite.grass.getFxImage());
                 this.received = true;
-                Bomb.powerBomb += 2;
+                //Bomb.powerBomb += 2;
             }
     }
 }

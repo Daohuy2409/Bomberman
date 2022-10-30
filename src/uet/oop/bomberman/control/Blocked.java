@@ -9,6 +9,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 public class Blocked {
 
     public static boolean block_down(Entity entity) {
+
         return idObjects[entity.getY() / 32 + 1][entity.getX() / 32] == ' ';
     }
 
@@ -22,6 +23,7 @@ public class Blocked {
 
     public static boolean block_right(Entity entity) {
         return idObjects[entity.getY() / 32][entity.getX() / 32 + 1] == ' ';
+
     }
 
     public static boolean block_down_bomb(Entity entity, int power) {

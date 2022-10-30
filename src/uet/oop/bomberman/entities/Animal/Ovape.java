@@ -9,6 +9,9 @@ import java.util.Random;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Ovape extends Animal{
+    private static long time = System.currentTimeMillis();
+    private static long tmp = time;
+
     public Ovape(int isMove, int swap, String direction, int count, int countToRun) {
         super(4,1,"right", 0, 0);
     }
@@ -17,17 +20,32 @@ public class Ovape extends Animal{
 
     }
 
+    @Override
+    public void checkBomb() {
+        if (idObjects[this.getY() / 32][this.getX() / 32] == 'b')
+            this.setLife(false);
+    }
+
+    @Override
+    public void dead() {
+        this.setImg(Sprite.doll_dead.getFxImage());
+        if (System.currentTimeMillis() - time < 1000) {
+            if (System.currentTimeMillis() - tmp > 100) {
+                tmp += 100;
+            }
+        } else {
+            enemyList.remove(this);
+        }
+    }
+
     public Ovape(int x, int y, Image img) {
         super(x, y, img);
     }
 
     public void update() {
-        //kill();
-        //countKill++;
-        for(Animal animal : enemyList) {
-            if (animal instanceof Ovape && !animal.life) {
-                //killOvape(animal);
-            }
+        checkBomb();
+        if (!this.isLife()) {
+            dead();
         }
 
         if (this.x % 16 == 0 && this.y % 16 == 0) {

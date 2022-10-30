@@ -78,7 +78,8 @@ public abstract class Animal extends Entity {
     public Animal() {
 
     }
-
+    public abstract void checkBomb();
+    public abstract void dead();
     @Override
     public void update() {
 

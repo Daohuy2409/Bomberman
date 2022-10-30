@@ -206,6 +206,7 @@ public class Bomb extends Entity {
 
         if (topExplosion != null) {
             createTop();
+            blockedBrick(bomb.getX() / 32, bomb.getY() / 32 + 1);
             idObjects[bomb.getY() / 32 + 1][bomb.getX() / 32] = 'b';
         }
 

@@ -11,7 +11,6 @@ public abstract class Item extends Entity {
     }
 
     public Item() {
-
     }
 
     public Item(boolean received) {
@@ -26,7 +25,5 @@ public abstract class Item extends Entity {
     }
 
     @Override
-    public void update() {
-
-    }
+    public abstract void update();
 }

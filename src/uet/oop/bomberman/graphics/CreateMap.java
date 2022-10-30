@@ -37,6 +37,7 @@ public class CreateMap {
                     switch (s) {
                         case 'x':
                             entity = new Portal(j, i, Sprite.brick.getFxImage());
+                            idObjects[i][j] = '*';
                             break;
                         case '#':
                             entity = new Wall(j, i, Sprite.wall.getFxImage());
@@ -46,9 +47,11 @@ public class CreateMap {
                             break;
                         case 's':
                             entity = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                            idObjects[i][j] = '*';
                             break;
                         case 'f':
                             entity = new FlameItem(j, i, Sprite.brick.getFxImage());
+                            idObjects[i][j] = '*';
                             break;
                         default:
                             entity = new Grass(j, i, Sprite.grass.getFxImage());

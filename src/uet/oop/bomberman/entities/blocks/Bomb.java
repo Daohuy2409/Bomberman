@@ -13,6 +13,7 @@ public class Bomb extends Entity {
     private static long timeBomb;
     private static long timeTmp;
     private static Bomb bomb;
+    private static Bomb upExplosion;
     private static int swapActive = 1;
     private static int swapExplosion = 1;
     public static int powerBomb = 0;
@@ -86,6 +87,21 @@ public class Bomb extends Entity {
         }
 
     }
+    private static void createUp() {
+
+    }
+
+    private static void createDown() {
+
+    }
+
+    private static void createLeft() {
+
+    }
+
+    private static void createRight() {
+
+    }
     private static void checkExplosion() {
         if (isBomb == 2) {
 
@@ -93,6 +109,7 @@ public class Bomb extends Entity {
             if (System.currentTimeMillis() - timeBomb < 1000) {
                 if (System.currentTimeMillis() - timeTmp > 100) {
                     createMiddle();
+                    createUp();
                     new SoundManager("sound/bomb_explosion.wav", "explosion");
                     timeTmp += 100;
                 }

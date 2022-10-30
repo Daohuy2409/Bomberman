@@ -35,16 +35,16 @@ public class Ovape extends Animal{
             int directionEnemy = newRandom.nextInt(4);
             switch (directionEnemy) {
                 case 0:
-                    Move.down(this);
+                    Move.downAcrossWall(this);
                     break;
                 case 1:
-                    Move.up(this);
+                    Move.upAcrossWall(this);
                     break;
                 case 2:
-                    Move.left(this);
+                    Move.leftAcrossWall(this);
                     break;
                 case 3:
-                    Move.right(this);
+                    Move.rightAcrossWall(this);
                     break;
             }
         }

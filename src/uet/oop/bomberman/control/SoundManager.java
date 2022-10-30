@@ -14,7 +14,6 @@ public class SoundManager extends JFrame {
 
     public static boolean isSoundDied;
     public static boolean isSoundTitle;
-    private static boolean isSoundComplete;
 
     public SoundManager(String name, String sound) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

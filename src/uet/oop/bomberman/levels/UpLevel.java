@@ -1,7 +1,5 @@
 package uet.oop.bomberman.levels;
 
-import javafx.scene.image.Image;
-
 import static uet.oop.bomberman.BombermanGame._level;
 import static uet.oop.bomberman.entities.blocks.Portal.isPortal;
 

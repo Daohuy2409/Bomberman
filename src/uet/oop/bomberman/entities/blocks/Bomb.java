@@ -87,6 +87,7 @@ public class Bomb extends Entity {
     private static void checkBlockedExplosion() {
         if (Blocked.block_up_bomb(bomb, powerBomb)) {
             topExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 - 1, null);
+
             blockList.add(topExplosion);
         }
         if (Blocked.block_down_bomb(bomb, powerBomb)) {
@@ -182,20 +183,36 @@ public class Bomb extends Entity {
             swapRight = 1;
         }
     }
+    private static void blockedBrick(int x, int y) {
+        if (idObjects[y][x] == '*') {
+            idObjects[y][x] = ' ';
+            blockList.get(_width * y + x).setImg(Sprite.grass.getFxImage());
+        } else if (idObjects[y][x] == 'x') {
+            blockList.get(_width * y + x).setImg(Sprite.portal.getFxImage());
+        } else if (idObjects[y][x] == 's') {
+            blockList.get(_width * y + x).setImg(Sprite.powerup_speed.getFxImage());
+        } else if (idObjects[y][x] == 'f') {
+            blockList.get(_width * y + x).setImg(Sprite.powerup_flames.getFxImage());
+        }
+    }
     private static void explosion() {
         createMiddle();
         if (topExplosion != null) {
             createTop();
+            blockedBrick(bomb.getX() / 32, bomb.getY() / 32 + 1);
         }
 
         if (downExplosion != null) {
             createDown();
+            blockedBrick(bomb.getX() / 32, bomb.getY() / 32 - 1);
         }
         if (leftExplosion != null) {
             createLeft();
+            blockedBrick(bomb.getX() / 32 - 1, bomb.getY() / 32);
         }
         if (rightExplosion != null) {
             createRight();
+            blockedBrick(bomb.getX() / 32 + 1, bomb.getY() / 32);
         }
     }
     private static void removeExplosion() {

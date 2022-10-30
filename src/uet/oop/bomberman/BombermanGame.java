@@ -21,6 +21,7 @@ import uet.oop.bomberman.levels.Level1;
 import java.util.ArrayList;
 import java.util.List;
 
+import static uet.oop.bomberman.control.SoundManager.updateSound;
 import static uet.oop.bomberman.entities.blocks.Portal.isPortal;
 import static uet.oop.bomberman.levels.UpLevel.*;
 
@@ -141,6 +142,7 @@ public class BombermanGame extends Application {
             }
         }
         waitToLevelUp();
+        updateSound();
     }
 
     public void render() {

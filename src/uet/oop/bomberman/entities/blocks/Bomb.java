@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.blocks;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.control.Blocked;
 import uet.oop.bomberman.control.SoundManager;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
@@ -78,17 +79,27 @@ public class Bomb extends Entity {
                 isBomb = 2;
                 timeBomb = System.currentTimeMillis();
                 timeTmp = timeBomb;
-
-                topExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 - 1, null);
-                downExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 + 1, null);
-                leftExplosion = new Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, null);
-                rightExplosion = new Bomb(bomb.getX() / 32 + 1, bomb.getY() / 32, null);
-
-                blockList.add(topExplosion);
-                blockList.add(downExplosion);
-                blockList.add(leftExplosion);
-                blockList.add(rightExplosion);
+                checkBlockedExplosion();
             }
+        }
+    }
+
+    private static void checkBlockedExplosion() {
+        if (Blocked.block_up_bomb(bomb, powerBomb)) {
+            topExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 - 1, null);
+            blockList.add(topExplosion);
+        }
+        if (Blocked.block_down_bomb(bomb, powerBomb)) {
+            downExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 + 1, null);
+            blockList.add(downExplosion);
+        }
+        if (Blocked.block_left_bomb(bomb, powerBomb)) {
+            leftExplosion = new Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, null);
+            blockList.add(leftExplosion);
+        }
+        if (Blocked.block_right_bomb(bomb, powerBomb)) {
+            rightExplosion = new Bomb(bomb.getX() / 32 + 1, bomb.getY() / 32, null);
+            blockList.add(rightExplosion);
         }
     }
 
@@ -171,29 +182,48 @@ public class Bomb extends Entity {
             swapRight = 1;
         }
     }
+    private static void explosion() {
+        createMiddle();
+        if (topExplosion != null) {
+            createTop();
+        }
+
+        if (downExplosion != null) {
+            createDown();
+        }
+        if (leftExplosion != null) {
+            createLeft();
+        }
+        if (rightExplosion != null) {
+            createRight();
+        }
+    }
+    private static void removeExplosion() {
+        if (topExplosion != null) {
+            blockList.remove(topExplosion);
+        }
+        if (downExplosion != null) {
+            blockList.remove(downExplosion);
+        }
+        if (leftExplosion != null) {
+            blockList.remove(leftExplosion);
+        }
+        if (rightExplosion != null) {
+            blockList.remove(rightExplosion);
+        }
+    }
     private static void checkExplosion() {
         if (isBomb == 2) {
-
-
             if (System.currentTimeMillis() - timeBomb < 1000) {
                 if (System.currentTimeMillis() - timeTmp > 100) {
-
-                    createMiddle();
-                    createTop();
-                    createDown();
-                    createLeft();
-                    createRight();
-
+                    explosion();
                     new SoundManager("sound/bomb_explosion.wav", "explosion");
                     timeTmp += 100;
                 }
             } else {
                 isBomb = 0;
                 blockList.remove(bomb);
-                blockList.remove(topExplosion);
-                blockList.remove(downExplosion);
-                blockList.remove(leftExplosion);
-                blockList.remove(rightExplosion);
+                removeExplosion();
             }
         }
     }

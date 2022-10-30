@@ -39,7 +39,7 @@ public class BombermanGame extends Application {
     public static List<Animal> enemyList = new ArrayList<>();       //Contains enemy entities
 
     public static char[][] idObjects;    //Two-dimensional array is used to test paths
-    public static int[][] listKill;     //Array containing dead positions
+    public static char[][] listKill;     //Array containing dead positions
 
     public static Animal bomberman;
 

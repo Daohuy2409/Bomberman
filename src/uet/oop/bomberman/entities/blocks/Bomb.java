@@ -1,6 +1,8 @@
 package uet.oop.bomberman.entities.blocks;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.control.Blocked;
+import uet.oop.bomberman.control.SoundManager;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -12,7 +14,20 @@ public class Bomb extends Entity {
     private static long timeBomb;
     private static long timeTmp;
     private static Bomb bomb;
+
+    private static Bomb topExplosion;
+    private static Bomb downExplosion;
+    private static Bomb leftExplosion;
+    private static Bomb rightExplosion;
+
     private static int swapActive = 1;
+    private static int swapExplosion = 1;
+
+    private static int swapTop = 1;
+    private static int swapDown = 1;
+    private static int swapLeft = 1;
+    private static int swapRight = 1;
+
     public static int powerBomb = 0;
 
     public static int isBomb = 0;   //0 no bomb /1 had bomb /2 explosion
@@ -64,15 +79,169 @@ public class Bomb extends Entity {
                 isBomb = 2;
                 timeBomb = System.currentTimeMillis();
                 timeTmp = timeBomb;
+                checkBlockedExplosion();
             }
         }
     }
 
+    private static void checkBlockedExplosion() {
+        if (Blocked.block_up_bomb(bomb, powerBomb)) {
+            topExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 - 1, null);
+
+            blockList.add(topExplosion);
+        }
+        if (Blocked.block_down_bomb(bomb, powerBomb)) {
+            downExplosion = new Bomb(bomb.getX() / 32, bomb.getY() / 32 + 1, null);
+            blockList.add(downExplosion);
+        }
+        if (Blocked.block_left_bomb(bomb, powerBomb)) {
+            leftExplosion = new Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, null);
+            blockList.add(leftExplosion);
+        }
+        if (Blocked.block_right_bomb(bomb, powerBomb)) {
+            rightExplosion = new Bomb(bomb.getX() / 32 + 1, bomb.getY() / 32, null);
+            blockList.add(rightExplosion);
+        }
+    }
+
+    private static void createMiddle() {
+        if (swapExplosion == 1) {
+            bomb.setImg(Sprite.bomb_exploded.getFxImage());
+            swapExplosion = 2;
+        } else if (swapExplosion == 2) {
+            bomb.setImg(Sprite.bomb_exploded1.getFxImage());
+            swapExplosion = 3;
+        } else if (swapExplosion == 3) {
+            bomb.setImg(Sprite.bomb_exploded2.getFxImage());
+            swapExplosion = 4;
+        } else if (swapExplosion == 4) {
+            bomb.setImg(Sprite.bomb_exploded1.getFxImage());
+            swapExplosion = 1;
+        }
+
+    }
+    private static void createTop() {
+        if (swapTop == 1) {
+            topExplosion.setImg(Sprite.explosion_vertical_top_last.getFxImage());
+            swapTop = 2;
+        } else if (swapTop == 2) {
+            topExplosion.setImg(Sprite.explosion_vertical_top_last1.getFxImage());
+            swapTop = 3;
+        } else if (swapTop == 3){
+            topExplosion.setImg(Sprite.explosion_vertical_top_last2.getFxImage());
+            swapTop = 4;
+        } else if (swapTop == 4) {
+            topExplosion.setImg(Sprite.explosion_vertical_top_last1.getFxImage());
+            swapTop = 1;
+        }
+    }
+
+    private static void createDown() {
+        if (swapDown == 1) {
+            downExplosion.setImg(Sprite.explosion_vertical_down_last.getFxImage());
+            swapDown = 2;
+        } else if (swapDown == 2) {
+            downExplosion.setImg(Sprite.explosion_vertical_down_last1.getFxImage());
+            swapDown = 3;
+        } else if (swapDown == 3){
+            downExplosion.setImg(Sprite.explosion_vertical_down_last2.getFxImage());
+            swapDown = 4;
+        } else if (swapDown == 4) {
+            downExplosion.setImg(Sprite.explosion_vertical_down_last1.getFxImage());
+            swapDown = 1;
+        }
+    }
+
+    private static void createLeft() {
+        if (swapLeft == 1) {
+            leftExplosion.setImg(Sprite.explosion_horizontal_left_last.getFxImage());
+            swapLeft = 2;
+        } else if (swapLeft == 2) {
+            leftExplosion.setImg(Sprite.explosion_horizontal_left_last1.getFxImage());
+            swapLeft = 3;
+        } else if (swapLeft == 3) {
+            leftExplosion.setImg(Sprite.explosion_horizontal_left_last2.getFxImage());
+            swapLeft = 4;
+        } else if (swapLeft == 4) {
+            leftExplosion.setImg(Sprite.explosion_horizontal_left_last1.getFxImage());
+            swapLeft = 1;
+        }
+    }
+
+    private static void createRight() {
+        if (swapRight == 1) {
+            rightExplosion.setImg(Sprite.explosion_horizontal_right_last.getFxImage());
+            swapRight = 2;
+        } else if (swapRight == 2) {
+            rightExplosion.setImg(Sprite.explosion_horizontal_right_last1.getFxImage());
+            swapRight = 3;
+        } else if (swapRight == 3) {
+            rightExplosion.setImg(Sprite.explosion_horizontal_right_last2.getFxImage());
+            swapRight = 4;
+        } else if (swapRight == 4) {
+            rightExplosion.setImg(Sprite.explosion_horizontal_right_last1.getFxImage());
+            swapRight = 1;
+        }
+    }
+    private static void blockedBrick(int x, int y) {
+        if (idObjects[y][x] == '*') {
+            idObjects[y][x] = ' ';
+            blockList.get(_width * y + x).setImg(Sprite.grass.getFxImage());
+        } else if (idObjects[y][x] == 'x') {
+            blockList.get(_width * y + x).setImg(Sprite.portal.getFxImage());
+        } else if (idObjects[y][x] == 's') {
+            blockList.get(_width * y + x).setImg(Sprite.powerup_speed.getFxImage());
+        } else if (idObjects[y][x] == 'f') {
+            blockList.get(_width * y + x).setImg(Sprite.powerup_flames.getFxImage());
+        }
+    }
+    private static void explosion() {
+        createMiddle();
+        if (topExplosion != null) {
+            createTop();
+            blockedBrick(bomb.getX() / 32, bomb.getY() / 32 + 1);
+        }
+
+        if (downExplosion != null) {
+            createDown();
+            blockedBrick(bomb.getX() / 32, bomb.getY() / 32 - 1);
+        }
+        if (leftExplosion != null) {
+            createLeft();
+            blockedBrick(bomb.getX() / 32 - 1, bomb.getY() / 32);
+        }
+        if (rightExplosion != null) {
+            createRight();
+            blockedBrick(bomb.getX() / 32 + 1, bomb.getY() / 32);
+        }
+    }
+    private static void removeExplosion() {
+        if (topExplosion != null) {
+            blockList.remove(topExplosion);
+        }
+        if (downExplosion != null) {
+            blockList.remove(downExplosion);
+        }
+        if (leftExplosion != null) {
+            blockList.remove(leftExplosion);
+        }
+        if (rightExplosion != null) {
+            blockList.remove(rightExplosion);
+        }
+    }
     private static void checkExplosion() {
         if (isBomb == 2) {
-
-            blockList.remove(bomb);
-            isBomb = 0;
+            if (System.currentTimeMillis() - timeBomb < 1000) {
+                if (System.currentTimeMillis() - timeTmp > 100) {
+                    explosion();
+                    new SoundManager("sound/bomb_explosion.wav", "explosion");
+                    timeTmp += 100;
+                }
+            } else {
+                isBomb = 0;
+                blockList.remove(bomb);
+                removeExplosion();
+            }
         }
     }
 

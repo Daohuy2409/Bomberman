@@ -20,8 +20,10 @@ import uet.oop.bomberman.levels.Level1;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static uet.oop.bomberman.control.SoundManager.updateSound;
 import static uet.oop.bomberman.entities.blocks.Portal.isPortal;
@@ -114,7 +116,16 @@ public class BombermanGame extends Application {
         blockList.forEach(Entity::update);
         enemyList.forEach(Entity::update);
 
+        for (Animal enemy : enemyList) {
+            if (idObjects[enemy.getY() / 32][enemy.getX() / 32] == 'b')
+                enemy.setLife(false);
+            if (!enemy.isLife()) {
+                    enemy.dead();
+            }
+        }
+
         bomberman.update();
+
         bomberman.setCountToRun(bomberman.getCountToRun() + 1);
         if (bomberman.getCountToRun() == 4) {
             Move.checkRun(bomberman);

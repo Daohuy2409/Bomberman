@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.blocks;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.control.SoundManager;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -12,7 +13,9 @@ public class Bomb extends Entity {
     private static long timeBomb;
     private static long timeTmp;
     private static Bomb bomb;
+    private static Bomb upExplosion;
     private static int swapActive = 1;
+    private static int swapExplosion = 1;
     public static int powerBomb = 0;
 
     public static int isBomb = 0;   //0 no bomb /1 had bomb /2 explosion
@@ -68,11 +71,52 @@ public class Bomb extends Entity {
         }
     }
 
+    private static void createMiddle() {
+        if (swapExplosion == 1) {
+            bomb.setImg(Sprite.bomb_exploded.getFxImage());
+            swapExplosion = 2;
+        } else if (swapExplosion == 2) {
+            bomb.setImg(Sprite.bomb_exploded1.getFxImage());
+            swapExplosion = 3;
+        } else if (swapExplosion == 3) {
+            bomb.setImg(Sprite.bomb_exploded2.getFxImage());
+            swapExplosion = 4;
+        } else if (swapExplosion == 4) {
+            bomb.setImg(Sprite.bomb_exploded1.getFxImage());
+            swapExplosion = 1;
+        }
+
+    }
+    private static void createUp() {
+
+    }
+
+    private static void createDown() {
+
+    }
+
+    private static void createLeft() {
+
+    }
+
+    private static void createRight() {
+
+    }
     private static void checkExplosion() {
         if (isBomb == 2) {
 
-            blockList.remove(bomb);
-            isBomb = 0;
+
+            if (System.currentTimeMillis() - timeBomb < 1000) {
+                if (System.currentTimeMillis() - timeTmp > 100) {
+                    createMiddle();
+                    createUp();
+                    new SoundManager("sound/bomb_explosion.wav", "explosion");
+                    timeTmp += 100;
+                }
+            } else {
+                isBomb = 0;
+                blockList.remove(bomb);
+            }
         }
     }
 

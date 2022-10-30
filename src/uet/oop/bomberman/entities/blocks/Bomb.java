@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.control.Blocked;
 import uet.oop.bomberman.control.SoundManager;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.item.FlameItem;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
@@ -186,13 +188,15 @@ public class Bomb extends Entity {
     private static void blockedBrick(int x, int y) {
         if (idObjects[y][x] == '*') {
             idObjects[y][x] = ' ';
-            blockList.get(_width * y + x).setImg(Sprite.grass.getFxImage());
-        } else if (idObjects[y][x] == 'x') {
-            blockList.get(_width * y + x).setImg(Sprite.portal.getFxImage());
-        } else if (idObjects[y][x] == 's') {
-            blockList.get(_width * y + x).setImg(Sprite.powerup_speed.getFxImage());
-        } else if (idObjects[y][x] == 'f') {
-            blockList.get(_width * y + x).setImg(Sprite.powerup_flames.getFxImage());
+            if (blockList.get(_width * y + x) instanceof Portal) {
+                blockList.get(_width * y + x).setImg(Sprite.portal.getFxImage());
+            } else if (blockList.get(_width * y + x) instanceof SpeedItem) {
+                blockList.get(_width * y + x).setImg(Sprite.powerup_speed.getFxImage());
+            } else if (blockList.get(_width * y + x) instanceof FlameItem) {
+                blockList.get(_width * y + x).setImg(Sprite.powerup_flames.getFxImage());
+            } else {
+                blockList.get(_width * y + x).setImg(Sprite.grass.getFxImage());
+            }
         }
     }
     private static void explosion() {
